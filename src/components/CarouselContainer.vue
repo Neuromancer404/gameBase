@@ -32,7 +32,7 @@ export default {
 
 <style>
 img{
-  width: 1000px;
-  height: auto;
+  width: auto;
+  height: 20%;
 }
 </style>
