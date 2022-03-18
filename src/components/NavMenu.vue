@@ -1,5 +1,5 @@
 <template>
-  <div class="root">
+  <div class="rootNav">
     <div class="dockMenu">
       <DockMenu
           :items="items"
@@ -61,9 +61,10 @@ export default {
 };
 </script>
 <style>
-.root{
+.rootNav{
   background-color: white;
   position: absolute;
+  height: 100%;
 }
 .authorisation{
   z-index: 1;

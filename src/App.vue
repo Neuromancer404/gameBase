@@ -1,9 +1,11 @@
 <template>
-  <div class="root">
+  <div class="rootMain">
     <div class="navMenu">
-      <navMenu class="navMenu"></navMenu>
+      <navMenu class=""></navMenu>
     </div>
-    <mainContainer class="mainContainer"></mainContainer>
+    <div class="container">
+      <mainContainer class="mainContainer"></mainContainer>
+    </div>
   </div>
 </template>
 
@@ -28,15 +30,26 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
-.root{
-  position: relative;
+.container{
+  top:0;
+  position:relative;
+  margin: 0%;
+}
+.rootMain{
+  position: absolute;
+  width: 100vw;
+  right: 0px;
+  left: 0px;
 }
 .navMenu{
-  position:absolute;
+  position:fixed;
 }
 .mainContainer{
   position: absolute;
   background-color: #f9c74f;
   height: auto;
+}
+.js-focus-visible{
+  background-color: #fff6e1;
 }
 </style>

@@ -1,9 +1,11 @@
 <template>
+<div class="rootCarousel">
   <Carousel :autoplay="3000" :wrap-around="true" class="Carousel">
     <Slide v-for="slide of imagePath" :key="slide">
       <div class="carousel__item"><img id="slide" class="img" :src=slide></div>
     </Slide>
   </Carousel>
+</div>
 </template>
 
 <script>
@@ -31,8 +33,10 @@ export default {
 </script>
 
 <style>
-img{
-  width: auto;
-  height: 20%;
+.img{
+  height: 50vh;
+}
+.rootCarousel{
+  width: 100vw;
 }
 </style>

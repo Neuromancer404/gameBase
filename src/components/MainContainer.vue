@@ -36,15 +36,19 @@ export default {
 </script>
 
 <style>
+.root{
+  margin: 0%;
+}
 .Header{
   display: table;
   position: relative;
-  height: 110%;
+  width: 100vw;
+  top: 0%
 }
 .list{
   position: absolute;
   display: flex;
-  right: 4%;
+  right: 8%;
   height: 100%;
 }
 ul{
@@ -55,8 +59,9 @@ ul{
   position:absolute;
   z-index: 1;
   text-align: center;
-  width: 20%;
+  width:20%;
   height: 100%;
+  left: 2vw;
 }
 .carouselContainer{
   display: table-cell;
