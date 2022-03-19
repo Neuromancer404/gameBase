@@ -15,7 +15,7 @@
       ></DockMenu>
     </div>
   <div class="authorisation">
-    <authorisation-page v-show="isVisible"></authorisation-page>
+    <authorisation-page @close="closeModal" v-show="isVisible"></authorisation-page>
   </div>
 </div>
   
@@ -57,20 +57,22 @@ export default {
           break;
         }
       },
+      closeModal(){
+        this.isVisible = false;
+      }
     }
 };
 </script>
 <style>
 .rootNav{
-  background-color: white;
-  position: absolute;
+  position: fixed;
   height: 100%;
 }
 .authorisation{
-  z-index: 1;
-  position: absolute;
+  position: fixed;
 }
 .dockMenu{
-  position: relative;
+  position: fixed;
+  
 }
 </style>

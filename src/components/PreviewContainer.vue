@@ -18,6 +18,8 @@
 }
 .inner{
     margin: auto;
+    background-color: #f9c74f;
+
 }
 .logo{
     width: 60%;

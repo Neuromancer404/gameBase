@@ -1,14 +1,14 @@
 <template>
   <div class="root">
     <div class="Header">
-      <div class="previewContainer">
-        <previewContainer class=""></previewContainer>
-      </div>
       <div class="carouselContainer">
         <carouselContainer class=""></carouselContainer>
       </div>
+      <div class="previewContainer">
+        <previewContainer class=""></previewContainer>
+      </div>
       <div class="list">
-        <ul>
+        <ul class="previewList">
           <li><h1>Новости</h1></li>
           <li><h1>События</h1></li>
           <li><h1>Сиськи</h1></li>
@@ -51,13 +51,13 @@ export default {
   right: 8%;
   height: 100%;
 }
-ul{
+.previewList{
   margin: auto;
+  background-color: #f9c74f;
 }
 .previewContainer{
   display: table-cell;
   position:absolute;
-  z-index: 1;
   text-align: center;
   width:20%;
   height: 100%;

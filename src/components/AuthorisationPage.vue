@@ -1,35 +1,34 @@
-<template>
+<template v-show="isVisibleModal">
 <transition name="modal-fade">
     <div class="modal-backdrop">
     <div class="modal">
       <header class="modal-header">
         <slot name="header">
-          This is the default tile!
+          Вход
 
           <button
             type="button"
             class="btn-close"
             @click="close"
           >
-            x
+            <p class="select">Закрыть</p>
           </button>
         </slot>
       </header>
       <section class="modal-body">
-        <slot name="body">
-          I'm the default body!
-        </slot>
+        <p>Логин:</p>
+          <input class="login">
+        <p>Пароль:</p>
+          <input class="password">
        </section>
        <footer class="modal-footer">
           <slot name="footer">
-            I'm the default footer!
-
             <button
               type="button"
               class="btn-green"
               @click="close"
             >
-              Close me!
+              <h1>Вход</h1>
           </button>
         </slot>
       </footer>
@@ -39,7 +38,18 @@
 </template>
 
 <script>
-
+export default{
+  data(){
+    return{
+      
+    }
+  },
+  methods:{
+    close() {
+      this.$emit('close');
+    }
+  }
+}
 </script>
 
 <style>
@@ -59,7 +69,7 @@
     left: 0;
     right: 0;
     background-color: rgba(0, 0, 0, 0.3);
-    display: flex;
+    display:flex;
     justify-content: center;
     align-items: center;
   }
@@ -76,6 +86,7 @@
   .modal-footer {
     padding: 15px;
     display: flex;
+    display: table;;
   }
 
   .modal-header {
@@ -87,11 +98,6 @@
   .modal-footer {
     border-top: 1px solid #eeeeee;
     justify-content: flex-end;
-  }
-
-  .modal-body {
-    position: relative;
-    padding: 20px 10px;
   }
 
   .btn-close {
@@ -110,5 +116,8 @@
     border: 1px solid #4AAE9B;
     border-radius: 2px;
   }
-</style>
+  .select:hover{
+    text-decoration: underline;
 
+  }
+</style>

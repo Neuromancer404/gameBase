@@ -43,6 +43,7 @@ export default {
 }
 .navMenu{
   position:fixed;
+  z-index: 1;
 }
 .mainContainer{
   position: absolute;
