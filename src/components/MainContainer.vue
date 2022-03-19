@@ -53,7 +53,6 @@ export default {
 }
 .previewList{
   margin: auto;
-  background-color: #f9c74f;
 }
 .previewContainer{
   display: table-cell;
