@@ -7,11 +7,16 @@
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
-  <body background-color="#f9c74f">
+  <style>
+    [v-cloak]{
+      display: none;
+    }
+  </style>
+  <body>
     <noscript>
       <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
-    <div id="app"></div>
+    <div id="app" v-cloak></div>
     <!-- built files will be auto injected -->
   </body>
 </html>
