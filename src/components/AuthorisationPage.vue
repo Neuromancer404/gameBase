@@ -15,23 +15,25 @@
           </button>
         </slot>
       </header>
-      <section class="modal-body">
-        <p>Логин:</p>
-          <input class="login">
-        <p>Пароль:</p>
-          <input class="password">
-       </section>
-       <footer class="modal-footer">
-          <slot name="footer">
-            <button
-              type="button"
-              class="btn-green"
-              @click="close"
-            >
-              <h1>Вход</h1>
-          </button>
-        </slot>
-      </footer>
+
+      <form action="./php/authorisation.php">
+        <section class="modal-body">
+          <p>Логин:</p>
+            <input class="login">
+          <p>Пароль:</p>
+            <input class="password">
+        </section>
+        <footer class="modal-footer">
+            <slot name="footer">
+              <button
+                type="submit"
+                class="btn-green"
+              >
+                <h2>Вход</h2>
+            </button>
+          </slot>
+        </footer>
+      </form>
     </div>
   </div>
 </transition>
