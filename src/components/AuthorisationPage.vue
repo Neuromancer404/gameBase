@@ -16,12 +16,12 @@
         </slot>
       </header>
 
-      <form action="./php/authorisation.php">
+      <form action="./php/authorisation.php" method="post">
         <section class="modal-body">
           <p>Логин:</p>
-            <input class="login">
+            <input class="login" name="login">
           <p>Пароль:</p>
-            <input class="password">
+            <input class="password" name="password">
         </section>
         <footer class="modal-footer">
             <slot name="footer">
