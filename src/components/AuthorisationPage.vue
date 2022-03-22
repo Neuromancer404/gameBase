@@ -4,7 +4,7 @@
     <div class="modal">
       <header class="modal-header">
         <slot name="header">
-          Вход
+          <h1 class="enter">Вход</h1>
 
           <button
             type="button"
@@ -27,8 +27,7 @@
             <slot name="footer">
               <button
                 type="submit"
-                class="btn-green"
-              >
+                class="btn-green">
                 <h2>Вход</h2>
             </button>
           </slot>
@@ -80,14 +79,14 @@ export default{
     background: #FFFFFF;
     box-shadow: 2px 2px 20px 1px;
     overflow-x: auto;
-    display: flex;
+    
     flex-direction: column;
   }
 
   .modal-header,
   .modal-footer {
     padding: 15px;
-    display: flex;
+    display: table;
     display: table;;
   }
 
@@ -103,6 +102,7 @@ export default{
   }
 
   .btn-close {
+    display: table-cell;
     border: none;
     font-size: 20px;
     padding: 20px;
@@ -117,9 +117,21 @@ export default{
     background: #4AAE9B;
     border: 1px solid #4AAE9B;
     border-radius: 2px;
+    margin: 5;
+    text-align: center;
+    width: 200px;
   }
   .select:hover{
     text-decoration: underline;
 
   }
+input{
+  margin-left: 10%;
+  margin-right: 10%;
+  text-align: center
+}
+.enter{
+  display: table-cell;
+}
+
 </style>
