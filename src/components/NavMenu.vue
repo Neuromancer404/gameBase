@@ -4,7 +4,6 @@
       <DockMenu
           :items="items"
           :on-selected="onSelected"
-          title="dgggvxcv"
           :theme="{
         primary: '#277da1',
         secondary: '#e5e5e5',
@@ -15,7 +14,12 @@
       ></DockMenu>
     </div>
   <div class="authorisation">
-    <authorisation-page @close="closeModal" v-show="isVisible" :title="title"></authorisation-page>
+    <authorisation-page 
+    @close="closeModal" 
+    v-show="isVisible" 
+    :title="title"
+    :way="way"
+    ></authorisation-page>
   </div>
 </div>
   
@@ -36,6 +40,7 @@ export default {
     return {
       isVisible:false,
       title: String,
+      way: String,
       count: 0,
       items: [
         {
@@ -52,12 +57,14 @@ export default {
           console.log("Регистрация");
           this.isVisible=true;
           this.title = "Регистрация"
+          this.way = "registration"
           break;
 
           case("Вход"):
           console.log("Вход");
           this.isVisible=true;
           this.title = "Вход"
+          this.way = "authorisation"
           break;
         }
       },

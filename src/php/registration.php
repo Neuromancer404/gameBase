@@ -43,3 +43,4 @@ function DBchecking($pdo, $login){
         echo $row['login'] . "\n";
     }
 }
+?>

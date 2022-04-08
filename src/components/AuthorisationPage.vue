@@ -16,10 +16,14 @@
         </slot>
       </header>
 
-      <form action="./php/registration.php" method="post">
+      <form :action="'./php/'+way+'.php'" method="post">
         <section class="modal-body">
-          <p>Логин:</p>
+          <div class="login">
+            <p>Логин:</p>
+          </div>
+          <div class="password">
             <input class="login" name="login">
+          </div>
           <p>Пароль:</p>
             <input class="password" name="password">
         </section>
@@ -41,11 +45,11 @@
 <script>
 export default{
   props:{
-    title: String
+    title: String,
+    way: String
   },
   data(){
     return{
-      
     }
   },
   methods:{
