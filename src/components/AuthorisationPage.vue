@@ -44,7 +44,6 @@
 </template>
 
 <script>
-import {jquery} from 'jquery'
 export default{
   props:{
     title: String,
@@ -59,12 +58,22 @@ export default{
       this.$emit('close');
     },
     xhr(){
-      jquery.getJSON( "registration.php", function( json ) {
-      console.log( "JSON Data: " + json);
-    });
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.onreadystatechange = catchJSON();
 
+      xmlhttp.open("POST", "registration.php", true);
+      xmlhttp.send(); 
   }
 },
+}
+
+function catchJSON(){
+
+  if (this.readyState == 4 && this.status == 200) {
+        var myObj = JSON.parse(this.responseText);
+        console.log(myObj);
+}
+
 }
 </script>
 
