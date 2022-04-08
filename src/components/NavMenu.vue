@@ -4,7 +4,7 @@
       <DockMenu
           :items="items"
           :on-selected="onSelected"
-          
+          title="dgggvxcv"
           :theme="{
         primary: '#277da1',
         secondary: '#e5e5e5',
@@ -15,7 +15,7 @@
       ></DockMenu>
     </div>
   <div class="authorisation">
-    <authorisation-page @close="closeModal" v-show="isVisible"></authorisation-page>
+    <authorisation-page @close="closeModal" v-show="isVisible" :title="title"></authorisation-page>
   </div>
 </div>
   
@@ -25,6 +25,7 @@
 import { DockMenu } from "vue-dock-menu";
 import "vue-dock-menu/dist/vue-dock-menu.css";
 import AuthorisationPage from './AuthorisationPage.vue';
+
 export default {
   name: "App",
   components: {
@@ -34,6 +35,7 @@ export default {
   data() {
     return {
       isVisible:false,
+      title: String,
       count: 0,
       items: [
         {
@@ -49,11 +51,13 @@ export default {
           case("Регистрация"):
           console.log("Регистрация");
           this.isVisible=true;
+          this.title = "Регистрация"
           break;
 
           case("Вход"):
           console.log("Вход");
           this.isVisible=true;
+          this.title = "Вход"
           break;
         }
       },

@@ -4,7 +4,7 @@
     <div class="modal">
       <header class="modal-header">
         <slot name="header">
-          <h1 class="enter">Вход</h1>
+          <h1 class="enter">{{title}}</h1>
 
           <button
             type="button"
@@ -16,7 +16,7 @@
         </slot>
       </header>
 
-      <form action="./php/authorisation.php" method="post">
+      <form action="./php/registration.php" method="post">
         <section class="modal-body">
           <p>Логин:</p>
             <input class="login" name="login">
@@ -40,6 +40,9 @@
 
 <script>
 export default{
+  props:{
+    title: String
+  },
   data(){
     return{
       

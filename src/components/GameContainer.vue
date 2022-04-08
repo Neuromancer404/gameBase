@@ -1,7 +1,7 @@
 <template>
     <div class="root">
-        <div class="topNews">
-
+        <div class="topGamesClass">
+            <top-games></top-games>
         </div>
 
         <div class="news">
@@ -11,7 +11,11 @@
 </template>
 
 <script>
+import TopGames from './TopGames.vue'
 export default {
+    components:{
+        TopGames
+    },
     data(){
         //topNews=0,
         //news=0

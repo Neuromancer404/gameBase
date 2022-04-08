@@ -16,19 +16,20 @@
         </ul>
       </div>
     </div>
-    <newsContainer></newsContainer>
+    <gameContainer></gameContainer>
   </div>
 </template>
 
 <script>
 import carouselContainer from './CarouselContainer'
-import newsContainer from './NewsContainer'
+import GameContainer from './GameContainer'
 import previewContainer from './PreviewContainer'
+
 export default {
   name: 'App',
   components:{
     carouselContainer,
-    newsContainer,
+    GameContainer,
     previewContainer
     
   }
