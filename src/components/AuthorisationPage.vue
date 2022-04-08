@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import {$} from 'jquery'
+import {jquery} from 'jquery'
 export default{
   props:{
     title: String,
@@ -59,7 +59,7 @@ export default{
       this.$emit('close');
     },
     xhr(){
-      $.getJSON( "registration.php", function( json ) {
+      jquery.getJSON( "registration.php", function( json ) {
       console.log( "JSON Data: " + json);
     });
 
