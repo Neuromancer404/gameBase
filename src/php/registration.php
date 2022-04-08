@@ -11,13 +11,13 @@ $options = [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION];
 
 try{
     $pdo = new PDO("$driver:host=$host;port=$port;dbname=$db_name;charset=$charset",$db_user,$db_pass,$options);
-    echo 'connected  ';
     $login = $_POST["login"];
     $pass = $_POST["password"];
     
     if(login ($login, $pass)){
-        echo "login or password entire  ";
-        DBchecking($pdo, $login);
+        if(DBchecking($pdo, $login)){
+            errorAnswer($login);
+        }
     }
     else{ 
         echo "login or password error  ";
@@ -40,7 +40,23 @@ function DBchecking($pdo, $login){
     $stmt = $pdo->query("SELECT * FROM `authorization` WHERE `login` = '$login'");
     while ($row = $stmt->fetch())
     {
-        echo $row['login'] . "\n";
+        if($row['login'] == $login){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
+}
+
+function errorAnswer($login){
+    $answer = array(
+        'login' => $login,
+        'using' => true
+    );
+    header('Content-Type: application/json');
+    $json = json_encode($answer);
+    echo ($json);
+    exit;
 }
 ?>

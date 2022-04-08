@@ -31,7 +31,8 @@
             <slot name="footer">
               <button
                 type="submit"
-                class="btn-green">
+                class="btn-green"
+                @click="xhr">
                 <h2>Вход</h2>
             </button>
           </slot>
@@ -43,6 +44,7 @@
 </template>
 
 <script>
+import {$} from 'jquery'
 export default{
   props:{
     title: String,
@@ -55,8 +57,14 @@ export default{
   methods:{
     close() {
       this.$emit('close');
-    }
+    },
+    xhr(){
+      $.getJSON( "registration.php", function( json ) {
+      console.log( "JSON Data: " + json);
+    });
+
   }
+},
 }
 </script>
 
