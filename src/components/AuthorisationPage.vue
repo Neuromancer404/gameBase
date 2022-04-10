@@ -16,28 +16,26 @@
         </slot>
       </header>
 
-      <form :action="'./php/'+way+'.php'" method="post">
         <section class="modal-body">
           <div class="login">
             <p>Логин:</p>
           </div>
           <div class="password">
-            <input class="login" name="login">
+            <input class="login" name="login" id="login">
           </div>
           <p>Пароль:</p>
-            <input class="password" name="password">
+            <input class="password" name="password" id="password">
         </section>
         <footer class="modal-footer">
             <slot name="footer">
               <button
                 type="submit"
                 class="btn-green"
-                @click="xhr">
+                @click="clickEvent">
                 <h2>Вход</h2>
             </button>
           </slot>
         </footer>
-      </form>
     </div>
   </div>
 </transition>
@@ -57,20 +55,27 @@ export default{
     close() {
       this.$emit('close');
     },
-    xhr(){
-      var xmlhttp = new XMLHttpRequest();
+    clickEvent(){
+      let login = document.getElementById("login").value;
+      let password = document.getElementById("password").value;
+      let xmlhttp = new XMLHttpRequest();
+      xmlhttp.open('POST', './php/'+this.way+'.php', true);
+      xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+      xmlhttp.send("login=" + encodeURIComponent(login) + "&password=" + encodeURIComponent(password));
       xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-        var myObj = JSON.parse(this.responseText);
-        console.log(myObj);
-        }
-    };
-      xmlhttp.open("POST", "registration.php", true);
-      xmlhttp.send(); 
-  }
-},
+         if (this.readyState == 4 && this.status == 200) {
+                    console.log(this.responseText);
+                    let obj = JSON.parse(this.responseText);
+                    console.log(obj)
+                 }
+                 else{
+                     console.log("connection error");
+                 }
+      }
+      console.log(this.way);
+    }
+  },
 }
-
 </script>
 
 <style>
