@@ -2,6 +2,19 @@
   <div class="rootNav">
     <div class="dockMenu">
       <DockMenu
+          :items="items2"
+          :on-selected="onSelected"
+          :theme="{
+        primary: '#277da1',
+        secondary: '#e5e5e5',
+        tertiary: '#008ecc',
+        textColor: '#000',
+        textHoverColor: '#fff',
+      }"
+      ></DockMenu>
+    </div>
+    <div class="dockMenu" v-show="visible">
+      <DockMenu
           :items="items"
           :on-selected="onSelected"
           :theme="{
@@ -31,6 +44,7 @@ import "vue-dock-menu/dist/vue-dock-menu.css";
 import AuthorisationPage from './AuthorisationPage.vue';
 
 export default {
+
   name: "App",
   components: {
     DockMenu,
@@ -38,6 +52,7 @@ export default {
   },
   data() {
     return {
+      visible: true,
       name1: "AAAAAAAAAAAAAAAAAA",
       isVisible:false,
       title: String,
@@ -45,8 +60,14 @@ export default {
       count: 0,
       items: [
         {
-          name: String(this.name1),
+          name: "Авторизация",
           menu: [{name: 'Вход',  }, {name: 'Регистрация'}]
+        },
+      ],
+      items2: [
+        {
+          name: "Аккаунт",
+          menu: [{name: 'Корзина',  }, {name: 'Выход'}]
         },
       ],
     };
@@ -77,8 +98,10 @@ export default {
         let login = getCookie('userLogin');
         let nickname = getCookie('userNick');
         let role = getCookie('userRole');
-        
-        
+        if(nickname!= undefined){
+        this.visible = false;
+        }
+      
         console.log(login, nickname, role);
       }
     }
