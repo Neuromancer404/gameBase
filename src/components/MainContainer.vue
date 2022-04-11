@@ -37,6 +37,7 @@ export default {
 </script>
 
 <style>
+
 .root{
   margin: 0%;
 }
@@ -54,6 +55,7 @@ export default {
 }
 .previewList{
   margin: auto;
+  text-shadow: 1px 1px 1px #fff;
 }
 .previewContainer{
   display: table-cell;

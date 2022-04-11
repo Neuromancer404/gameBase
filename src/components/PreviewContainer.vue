@@ -18,6 +18,7 @@
 }
 .inner{
     margin: auto;
+    text-shadow: 1px 1px 1px #fff;
 }
 .logo{
     width: 60%;

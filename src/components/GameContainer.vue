@@ -21,10 +21,27 @@ export default {
         //news=0
     }, 
     methods:{
-
+       gameLoad(){
+            let xmlhttp = new XMLHttpRequest();
+            xmlhttp.open('POST', './php/gameLoader.php', true);
+            //xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4) {
+            if(this.status == 200){
+                        console.log(this.responseText);
+                        jsonRunner(this.responseText)
+                }else{
+                        error('connection error');
+                    }
+            }
+        }
+        },
     },
-    mount:{
-
-    }
+}
+function jsonRunner(json){
+    console.log(json)
+}
+function error(data){
+    console.log(data)
 }
 </script>

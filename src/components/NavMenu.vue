@@ -1,6 +1,6 @@
 <template>
   <div class="rootNav">
-    <div class="dockMenu">
+    <div class="dockMenu" v-show="!visible">
       <DockMenu
           :items="items2"
           :on-selected="onSelected"
@@ -52,8 +52,10 @@ export default {
   },
   data() {
     return {
+      login: String,
+      nickname: String,
+      role : String,
       visible: true,
-      name1: "AAAAAAAAAAAAAAAAAA",
       isVisible:false,
       title: String,
       way: String,
@@ -88,6 +90,10 @@ export default {
           this.title = "Вход"
           this.way = "authorisation"
           break;
+
+          case("Выход"):
+          this.nickname = undefined
+          this.visible = true;
         }
       },
       closeModal(){
@@ -95,17 +101,18 @@ export default {
         this.readCookie();
       },
       readCookie(){
-        let login = getCookie('userLogin');
-        let nickname = getCookie('userNick');
-        let role = getCookie('userRole');
-        if(nickname!= undefined){
+        this.login = getCookie('userLogin');
+        this.nickname = getCookie('userNick');
+        this.role = getCookie('userRole');
+        if(this.nickname!= undefined){
         this.visible = false;
         }
       
-        console.log(login, nickname, role);
+        console.log(this.login, this.nickname, this.role);
       }
     }
 };
+
 function getCookie(name) {
   var matches = document.cookie.match(new RegExp(
     // eslint-disable-next-line no-useless-escape
