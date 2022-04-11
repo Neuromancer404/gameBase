@@ -1,6 +1,8 @@
 <?php
 $login = $_POST["login"];
 $password = $_POST["password"];
+$email = $_POST["email"];
+$nick = $_POST["nick"];
 $driver = 'mysql';
 $host = 'localhost';
 $port = '3306';
@@ -20,16 +22,20 @@ if(entireCheck($login, $pass)){
     if(loginCheking($pdo, $login)){
         answer($login);
     }else{
-        registration($login, $password);
+        registration($login, $password, $nick, $email, $pdo);
     }
 }else{
     returnError("Login or passwod input error");
 }
 
-function registration($login, $password){
+function registration($login, $password, $nick, $email, $pdo){
+    $zap = $pdo->query("INSERT INTO authorization VALUES ('$login', '$password', '$nick', 'user', '$email')");
+;
     $answer = array(
         'login' => $login,
-        'registration' => true
+        'nickname' => $nick,
+        'registration' => true,
+
     );
     header('Content-Type: application/json');
     $json = json_encode($answer);

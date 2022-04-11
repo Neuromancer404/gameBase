@@ -38,11 +38,13 @@
             <p class="errorOut" v-if="passwordVisible">Введите пароль</p>
         </section>
         <footer class="modal-footer">
+          <p v-show="helloVisible">Авторизация прошла успешно</p>
             <slot name="footer">
               <button
                 type="submit"
                 class="btn-green"
-                @click="clickEvent">
+                @click="clickEvent"
+                >
                 <h2>Вход</h2>
             </button>
           </slot>
@@ -63,7 +65,8 @@ export default{
       loginVisible: false,
       passwordVisible: false,
       nickVisible: false,
-      emailVisible: false
+      emailVisible: false,
+      helloVisible: false
     }
   },
   methods:{
@@ -93,12 +96,16 @@ export default{
         this.loginVisible = true;
       }
       else{
+        login = document.getElementById('login').value;
         this.loginVisible = false;
       }
       if(document.getElementById("password").value == ''){
         this.passwordVisible = true;
       }
-      else{this.passwordVisible = false;}
+      else{
+        password = document.getElementById('password').value;
+        this.passwordVisible = false;
+        }
 
 
 
@@ -107,12 +114,21 @@ export default{
 
       xmlhttp.open('POST', './php/'+this.way+'.php', true);
       xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-      xmlhttp.send("login=" + encodeURIComponent(login) + "&password=" + encodeURIComponent(password) + "&email=" + encodeURIComponent(email) + "&nickname=" + encodeURIComponent(nickname));
+      switch(this.way){
+        case 'registration':
+      xmlhttp.send("login=" + encodeURIComponent(login) + "&password=" + encodeURIComponent(password) + "&email=" + encodeURIComponent(email) + "&nick=" + encodeURIComponent(nickname));
+      console.log(this.way);
+      break;
+        case 'authorisation':
+      xmlhttp.send("login=" + encodeURIComponent(login) + "&password=" + encodeURIComponent(password));
+      console.log(this.way);
+          break;
+      }
       xmlhttp.onreadystatechange = function() {
          if (this.readyState == 4) {
            if(this.status == 200){
                     console.log(this.responseText);
-                    jsonRunner(this.responseText);
+                    if(jsonRunner(this.responseText)){this.helloVisible = true}
             }else{
                     error('connection error');
                 }
@@ -126,6 +142,7 @@ export default{
 function error(data){
   alert(data);
 }
+
 function jsonRunner(json){
     JSON.parse(json, (key, val)=>{
       if(key == 'errorType'){
@@ -133,6 +150,21 @@ function jsonRunner(json){
       }
       if(key == 'using'){
         error('Такой логин уже занят :(');
+      }
+      if(key == 'authorisation' && val == true){
+        JSON.parse(json, (key, val)=>{
+            if(key == 'login'){
+              document.cookie = 'userLogin'+'='+val;
+              }
+            if(key == 'nickname'){
+              document.cookie = 'userNick'+'='+val;
+            }
+            if(key == 'role'){
+            document.cookie = 'userRole'+'='+val;
+            }
+        });
+        console.log(document.cookie);
+        return true;
       }
     })
   }

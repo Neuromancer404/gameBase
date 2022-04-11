@@ -38,14 +38,15 @@ export default {
   },
   data() {
     return {
+      name1: "AAAAAAAAAAAAAAAAAA",
       isVisible:false,
       title: String,
       way: String,
       count: 0,
       items: [
         {
-          name: "Авторизация",
-          menu: [{name: "Вход",  }, {name:"Регистрация"}]
+          name: String(this.name1),
+          menu: [{name: 'Вход',  }, {name: 'Регистрация'}]
         },
       ],
     };
@@ -70,9 +71,25 @@ export default {
       },
       closeModal(){
         this.isVisible = false;
+        this.readCookie();
+      },
+      readCookie(){
+        let login = getCookie('userLogin');
+        let nickname = getCookie('userNick');
+        let role = getCookie('userRole');
+        
+        
+        console.log(login, nickname, role);
       }
     }
 };
+function getCookie(name) {
+  var matches = document.cookie.match(new RegExp(
+    // eslint-disable-next-line no-useless-escape
+    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+  ));
+  return matches ? decodeURIComponent(matches[1]) : undefined;
+}
 </script>
 <style>
 .rootNav{
